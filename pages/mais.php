@@ -18,7 +18,10 @@ if (isset($_GET["id"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $id; ?></title>
+    <title><?php
+            echo json_decode(file_get_contents("../images/obras/$id/info.json"))->{"nome"};
+
+    ?></title>
     <link rel="stylesheet" href="../css/mais.css">
 </head>
 
