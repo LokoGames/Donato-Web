@@ -51,7 +51,7 @@
      position: relative;
      display: flex;
      flex-direction: row;
-     height: 30vh;
+     height: 40vh;
      left: 25vw;
      border: 2px solid black;
  }
