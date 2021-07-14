@@ -2,5 +2,8 @@
 /zeyk
 /zeyk.pub
 
-# HIde fileUpdater
+# Hide fileUpdater
 /updateGit.ps1
+
+# Don't upload obras to keep the sever clean.
+/images/obras/
