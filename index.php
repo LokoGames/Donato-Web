@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +7,6 @@
     <link rel="stylesheet" href="css/index.css">
     <title>Donato Construtora</title>
 </head>
-
 <body>
     <header>
         <div class="logo">
@@ -50,5 +48,4 @@
     </footer>
     <script src="js/main.js"></script>
 </body>
-
 </html>
