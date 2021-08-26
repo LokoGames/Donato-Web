@@ -46,7 +46,7 @@ if (isset($_GET["id"])) {
                     $count = iterator_count($fi);
                     for ($i=0; $i < $count; $i++) {
                         $files = glob($imagePath . "*");
-                        echo "<img src='$files[$i]' draggable='false' onclick='document.getElementById(`displayIgm`).src = this.src;'>";
+                        echo "<img src='$files[$i]' draggable='false' onclick='document.getElementById(`displayIgm`).src = this.src;' class='images'>";
                     }
                 ?>
             </div>

@@ -30,5 +30,6 @@ for ($i = 0; $i < $total_count; $i++) {
             echo "File uploaded";
         }
     }
-    exit(200);
 }
+exit(200);
+?>
