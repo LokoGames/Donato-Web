@@ -1,7 +1,3 @@
-# Hide ssh keys from git repo
-/zeyk
-/zeyk.pub
-
 # Hide fileUpdater
 /updateGit.ps1
 
