@@ -1,19 +1,21 @@
+ /* Imports */
  @import url('https://fonts.googleapis.com/css2?family=Zen+Loop:ital@1&display=swap');
  @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
  @import url('https://fonts.googleapis.com/css2?family=Encode+Sans+SC&family=Zen+Loop:ital@1&display=swap');
  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
- 
-body {
-    margin: 0;
-    padding: 0;
-}
+ /* CSS */
+
+ body {
+     margin: 0;
+     padding: 0;
+ }
 
  .logo {
      position: relative;
      background-color: #1c252a;
      margin: 0;
      margin-bottom: 10px;
-     width: 100%;
+     width: 100vh;
      height: 10vh;
  }
 
@@ -22,10 +24,34 @@ body {
  }
 
  .logo a {
-     width: 40vw;
+     width: 100%;
      color: #f26522;
      display: flex;
-     height: 10vh;
+     height: 10%;
      text-decoration: none;
      font-family: 'Lato', sans-serif;
+ }
+
+ main {
+     display: flex;
+     flex-direction: row;
+ }
+
+ .obras {
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+     width: 100%;
+     margin: auto auto;
+     padding: 10px;
+     border-radius: 60px;
+ }
+
+ .card {
+     width: calc(20%-3px);
+     margin: auto 3px;
+ }
+
+ .card img {
+     width: 100%
  }

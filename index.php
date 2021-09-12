@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/index.css">
-    <title>Donato Construtora</title>
+    <title>Donato Construtora - Araçatuba, SP</title>
 </head>
+
 <body>
     <header>
         <div class="logo">
@@ -17,34 +19,25 @@
         </div>
     </header>
     <main>
-        <div class="presentation">
-            <?php
-                $obraPath = "images/obras/";
-                $fi = new FilesystemIterator($obraPath, FilesystemIterator::SKIP_DOTS);
-                $count = iterator_count($fi);
-            for ($i = 0; $i < $count; $i++) {
-                $files = glob($obraPath . "$i/images/" . "*");
-                $json = json_decode(file_get_contents($obraPath . "$i/info.json"));
-                if ($files != false) {
-                    echo "<div class='card'>
-                                <a href='/pages/mais.php?id=$i' onhover='showImage()'> <img src='$files[0]'> </a>
-                                <h1> " . $json->{'nome'} . "</h1>
-                                <p>" . $json->{"end"} ."</p>
-                                <p>" . $json->{"preco"} . "</p>
-                                <a href='/pages/mais.php?id=$i'>Ver Mais</a>
-                            </div>";
-                } else {
-                    echo "<div class='card'><h1>No images found</h1><div>";
-                }
-            }
-            ?>
+        <div class="expositor">
+            <!-- TODO: Add expositor -->
+            
+        </div>
+
+        <div class="info">
+            <!-- TODO: Add Info -->
+        </div>
+
+        <div class="obras">
+            <?php include "pages/render.php";?>
         </div>
     </main>
     <footer>
         <div>
-            <h3>Copyrigth ₢ Donato Construtora 2021</h3>
+            <h3>Copyright <b>&COPY;</b> Donato Construtora 2021</h3>
         </div>
     </footer>
     <script src="js/main.js"></script>
 </body>
+
 </html>

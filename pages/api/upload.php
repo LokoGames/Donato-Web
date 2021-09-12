@@ -31,5 +31,5 @@ for ($i = 0; $i < $total_count; $i++) {
         }
     }
 }
-exit(200);
+die();
 ?>
