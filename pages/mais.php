@@ -36,7 +36,7 @@ if (isset($_GET["id"])) {
     </header>
     <main>
         <div class="image">
-            <img id="displayIgm" draggable="false">
+            <img id="displayImg" draggable="false">
             <div class="icons">
                 <?php
                     $rootPath = "../images/obras/$id/";

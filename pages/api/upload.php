@@ -13,7 +13,12 @@ $imagePath = $obraPath .  "images/";
 mkdir($obraPath);
 mkdir($imagePath);
 
-$jsonToEncode = array('nome' => $_POST["nome"], 'end' => $_POST["end"], 'desc' => $_POST["desc"], 'preco' => "R$" . $_POST["preco"]);
+$jsonToEncode = array(
+    'nome' => $_POST["nome"], 
+    'end' => $_POST["end"], 
+    'desc' => $_POST["desc"], 
+    'preco' => "R$" . $_POST["preco"]
+);
 
 $encoded = json_encode($jsonToEncode);
 file_put_contents($obraPath .  "info.json" ,$encoded, FILE_APPEND);

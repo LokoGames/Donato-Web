@@ -17,10 +17,11 @@
  }
 
  .logo a {
-     width: 40vw;
+     width: 75vw;
      color: #f26522;
      display: flex;
      height: 10vh;
+     line-height: 1;
      font-family: 'Lato', sans-serif;
      text-decoration: none;
  }
