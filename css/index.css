@@ -1,64 +1,64 @@
  /* Imports */
-
+ 
  @import url('https://fonts.googleapis.com/css2?family=Zen+Loop:ital@1&display=swap');
  @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
  @import url('https://fonts.googleapis.com/css2?family=Encode+Sans+SC&family=Zen+Loop:ital@1&display=swap');
  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
  /* CSS */
-
+ 
  body {
      margin: 0;
      padding: 0;
  }
-
+ 
  header {
      width: 100%;
  }
-
+ 
  .logo {
      position: relative;
-     background-color: #1c252a;
+     background-color: #141414;
      margin: 0;
      margin-bottom: 10px;
      width: 100%;
      height: 10vh;
  }
-
+ 
  .logo img {
      height: 10vh;
  }
-
+ 
  .logo a {
      width: 100%;
-     color: #f26522;
+     color: #8C8C8C;
      display: flex;
      height: 10%;
      text-decoration: none;
-     font-family: 'Lato', sans-serif;
+     font-family: 'Montserrat', sans-serif;
  }
-
+ 
  main {
      display: flex;
      flex-direction: row;
  }
-
- .obras {
-     display: flex;
-     flex-direction: row;
-     flex-wrap: wrap;
-     width: 100%;
-     margin: auto auto;
-     padding: 10px;
-     border-radius: 60px;
- }
-
+ 
  .card {
      width: calc(20%-3px);
      height: 35vh;
      margin: auto 3px;
      line-height: 0vh;
  }
-
- #mapid { 
-     height: 40vh; 
-    }
+ 
+ .card img {
+     width: 100%;
+ }
+ 
+ footer {
+     width: 100%;
+     position: absolute;
+     bottom: 0;
+ }
+ 
+ footer h3 {
+     text-align: center;
+ }

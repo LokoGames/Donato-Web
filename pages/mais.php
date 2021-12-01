@@ -19,7 +19,7 @@ if (isset($_GET["id"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php
-            echo json_decode(file_get_contents("../images/obras/$id/info.json"))->{"nome"};
+            echo json_decode(file_get_contents("../obras/$id/info.json"))->{"nome"};
 
     ?></title>
     <link rel="stylesheet" href="../css/mais.css">
@@ -39,21 +39,22 @@ if (isset($_GET["id"])) {
             <img id="displayImg" draggable="false">
             <div class="icons">
                 <?php
-                    $rootPath = "../images/obras/$id/";
+                    $rootPath = "../obras/$id/";
                     $imagePath = $rootPath . "images/";
                     $json = json_decode(file_get_contents($rootPath . "info.json"));
                     $fi = new FilesystemIterator($imagePath, FilesystemIterator::SKIP_DOTS);
                     $count = iterator_count($fi);
                     for ($i=0; $i < $count; $i++) {
                         $files = glob($imagePath . "*");
-                        echo "<img src='$files[$i]' draggable='false' onclick='document.getElementById(`displayIgm`).src = this.src;' class='images'>";
+                        echo "<img src='$files[$i]' draggable='false' onclick='document.getElementById(`displayImg`).src = this.src;' class='images'>";
                     }
                 ?>
+                <button onclick="changeImg()">></button>
             </div>
         </div>
         <div class="info">
             <?php
-            $rootPath = "../images/obras/$id/";
+            $rootPath = "../obras/$id/";
             $json = json_decode(file_get_contents($rootPath . "info.json"));
             echo "<div class='top'>
                 <h1 id='nome'>" . $json->{"nome"} . "</h1>

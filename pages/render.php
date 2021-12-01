@@ -1,5 +1,5 @@
 <?php
-$obraPath = "images/obras/";
+$obraPath = "obras/";
 $fi = new FilesystemIterator($obraPath, FilesystemIterator::SKIP_DOTS);
 $count = iterator_count($fi);
 for ($i = 0; $i < ($count); $i++) {
