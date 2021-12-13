@@ -1,5 +1,7 @@
 # Hide file Updater
 /updateGit.ps1
 
+/.gitignore
+
 # Don't upload obras to keep the sever clean.
 /images/obras/

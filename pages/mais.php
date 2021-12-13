@@ -9,19 +9,13 @@ if (isset($_GET["id"])) {
     die("parameter id not specified!");
 }
 ?>
-
-
-
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php
-            echo json_decode(file_get_contents("../obras/$id/info.json"))->{"nome"};
-
-    ?></title>
+    <title><?php echo json_decode(file_get_contents("../obras/$id/info.json"))->{"nome"}; ?></title>
     <link rel="stylesheet" href="../css/mais.css">
 </head>
 
@@ -39,15 +33,15 @@ if (isset($_GET["id"])) {
             <img id="displayImg" draggable="false">
             <div class="icons">
                 <?php
-                    $rootPath = "../obras/$id/";
-                    $imagePath = $rootPath . "images/";
-                    $json = json_decode(file_get_contents($rootPath . "info.json"));
-                    $fi = new FilesystemIterator($imagePath, FilesystemIterator::SKIP_DOTS);
-                    $count = iterator_count($fi);
-                    for ($i=0; $i < $count; $i++) {
-                        $files = glob($imagePath . "*");
-                        echo "<img src='$files[$i]' draggable='false' onclick='document.getElementById(`displayImg`).src = this.src;' class='images'>";
-                    }
+                $rootPath = "../obras/$id/";
+                $imagePath = $rootPath . "images/";
+                $json = json_decode(file_get_contents($rootPath . "info.json"));
+                $fi = new FilesystemIterator($imagePath, FilesystemIterator::SKIP_DOTS);
+                $count = iterator_count($fi);
+                for ($i = 0; $i < $count; $i++) {
+                    $files = glob($imagePath . "*");
+                    echo "<img src='$files[$i]' draggable='false' onclick='document.getElementById(`displayImg`).src = this.src;' class='images'>";
+                }
                 ?>
                 <button onclick="changeImg()">></button>
             </div>

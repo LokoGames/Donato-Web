@@ -2,7 +2,7 @@
 echo "Uploading... \n";
 $files = array_filter($_FILES['file']['name']);
 $total_count = count($_FILES['file']['name']);
-$rootPath = $_SERVER['DOCUMENT_ROOT'] . "/images/obras/";
+$rootPath = $_SERVER['DOCUMENT_ROOT'] . "\/obras/";
 $fi = new FilesystemIterator($rootPath, FilesystemIterator::SKIP_DOTS);
 
 $count = iterator_count($fi) - 1;

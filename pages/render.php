@@ -10,7 +10,7 @@ for ($i = 0; $i < ($count); $i++) {
         <div class='card" . "'>
             <a href='/pages/mais.php?id=$i'> <img src='$files[0]'> </a>
             <h1> " . $json->{'nome'} . "</h1>
-            <p>" . $json->{"end"} . "</p>
+            <h2>" . $json->{"end"} . "</h2>
             <p>" . $json->{"preco"} . "</p>
             <a href='/pages/mais.php?id=$i'>Ver Mais</a>
         </div>";
