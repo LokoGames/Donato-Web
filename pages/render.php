@@ -6,16 +6,20 @@ for ($i = 0; $i < ($count); $i++) {
     $files = glob($obraPath . "$i/images/" . "*");
     $json = json_decode(file_get_contents($obraPath . "$i/info.json"));
     if ($files != false) {
+        $nome = $json->{"nome"};
+        $end = $json->{"end"};
+        $img = $files[0];
+
         echo "
-        <div class='card" . "'>
-            <a href='/pages/mais.php?id=$i'> <img src='$files[0]'> </a>
-            <h1> " . $json->{'nome'} . "</h1>
-            <h2>" . $json->{"end"} . "</h2>
-            <p>" . $json->{"preco"} . "</p>
-            <a href='/pages/mais.php?id=$i'>Ver Mais</a>
+        <div class='card' onmouseover='showInfo(this);'>
+            <img src='$img'>
+                <a href='/pages/mais.php?id=$i' class='info' onmouseout='hideInfo(this);'>
+                    <h2>$nome</h2>
+                    <h3>$end</h3>
+                </a> 
         </div>";
     } else {
-        echo "<div class='card'><h1>No images found</h1><div>";
+        die("Nenhuma Obra encontrada");
     }
 }
 ?>

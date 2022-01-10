@@ -12,7 +12,7 @@
 <body>
     <header>
         <div class="logo">
-            <a href="./index.php">
+            <a href=".">
                 <img src="images/dnt.png" alt="Logo" draggable="False">
                 <h1>Donato Construtora</h1>
             </a>

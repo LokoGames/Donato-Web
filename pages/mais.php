@@ -1,12 +1,19 @@
 <?php
 if (isset($_GET["id"])) {
-    if ($_GET["id"] != "") {
+    if ($_GET["id"] != "" && checkId($_GET["id"]) == true) {
         $id = $_GET["id"];
     } else {
         die("Id not found");
     }
 } else {
     die("parameter id not specified!");
+}
+function checkId(int $id = 0)
+{
+    $rootPath = "../obras/";
+    $fi = new FilesystemIterator($rootPath, FilesystemIterator::SKIP_DOTS);
+    $count = iterator_count($fi);
+    return ($id < $count);
 }
 ?>
 <html lang="en">
