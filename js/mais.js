@@ -10,12 +10,22 @@ onload = function() {
 }
 
 function changeImg() {
+    clearTimeout();
     if (currId < images.length - 1) {
         currId++;
     } else {
         currId = 0;
     }
-    displayImg.src = images[currId].src;
+    displayImg.classList.toggle("change");
+    setTimeout(() => {
+        displayImg.classList.toggle("change");
+        displayImg.src = images[currId].src;
+    }, 2000);
+}
+
+function setImage(sender, id) {
+    currId = id;
+    document.getElementById(`displayImg`).src = sender.src;
 }
 
 setInterval(changeImg, 5 * 1000);

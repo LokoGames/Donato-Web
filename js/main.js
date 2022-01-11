@@ -7,13 +7,16 @@ function htmlToElement(html) {
 
 console.log("Running");
 let style;
+let visible = true;
 
-function showInfo(sender) {
-    sender.children[1].style.visibility = "visible";
-}
-
-function hideInfo(sender) {
+function toggleInfo(sender) {
+    let elm = sender;
+    if (sender.classList.contains('card')) {
+        elm = sender.children[1];
+    }
+    elm.classList.remove("hide");
+    console.log(sender.className)
     setTimeout(() => {
-        sender.style.visibility = "hidden";
-    }, 2010);
+        elm.classList.add("hide");
+    }, 2000);
 }

@@ -11,9 +11,9 @@ for ($i = 0; $i < ($count); $i++) {
         $img = $files[0];
 
         echo "
-        <div class='card' onmouseover='showInfo(this);'>
+        <div class='card' onmouseover='toggleInfo(this);'>
             <img src='$img'>
-                <a href='/pages/mais.php?id=$i' class='info' onmouseout='hideInfo(this);'>
+                <a href='/pages/mais.php?id=$i' class='info hide'>
                     <h2>$nome</h2>
                     <h3>$end</h3>
                 </a> 

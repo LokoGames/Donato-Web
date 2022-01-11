@@ -47,7 +47,7 @@ function checkId(int $id = 0)
                 $count = iterator_count($fi);
                 for ($i = 0; $i < $count; $i++) {
                     $files = glob($imagePath . "*");
-                    echo "<img src='$files[$i]' draggable='false' onclick='document.getElementById(`displayImg`).src = this.src;' class='images'>";
+                    echo "<img src='$files[$i]' draggable='false' onclick='setImage(this, $i);' class='images'>";
                 }
                 ?>
                 <button onclick="changeImg()">></button>
