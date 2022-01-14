@@ -1,4 +1,5 @@
 <?php
+header("Location: ../../index.php");
 echo "Uploading... \n";
 $files = array_filter($_FILES['file']['name']);
 $total_count = count($_FILES['file']['name']);
@@ -26,6 +27,7 @@ file_put_contents($obraPath .  "info.json" ,$encoded, FILE_APPEND);
 for ($i = 0; $i < $total_count; $i++) {
     //The temp file path is obtained
     $tmpFilePath = $_FILES['file']['tmp_name'][$i];
+    echo $tmpFilePath;
     //A file path needs to be present
     if ($tmpFilePath != "") {
         //Setup our new file path
@@ -36,5 +38,5 @@ for ($i = 0; $i < $total_count; $i++) {
         }
     }
 }
-die();
+
 ?>

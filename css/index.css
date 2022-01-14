@@ -10,6 +10,7 @@
      margin: 0;
      border: 0;
      padding: 0;
+     user-select: none;
  }
  
  .logo {
@@ -49,7 +50,7 @@
      color: #8C8C8C;
      display: flex;
      height: 10vh;
-     line-height: 1;
+     line-height: 2;
      font-family: 'Lato', sans-serif;
      text-decoration: none;
  }

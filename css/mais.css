@@ -7,6 +7,7 @@
      margin: 0;
      padding: 0;
      border: 0;
+     user-select: none;
  }
  
  body {
@@ -35,7 +36,7 @@
      color: #BBB;
      display: flex;
      height: 10vh;
-     line-height: 1;
+     line-height: 2;
      font-family: 'Lato', sans-serif;
      text-decoration: none;
  }
@@ -60,7 +61,6 @@
  
  main {
      position: absolute;
-     top: 10vh;
      display: flex;
      flex-direction: row;
  }
@@ -83,6 +83,7 @@
  }
  
  .image {
+     margin-left: 10px;
      width: 45vw;
      height: 50vh;
      display: flex;
