@@ -6,31 +6,38 @@
  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
  /* CSS */
  
- html {
-     width: 100vw;
-     height: 100vh;
- }
- 
- body {
+ * {
      margin: 0;
+     border: 0;
      padding: 0;
-     width: 100vw;
-     height: 100vh;
- }
- 
- header {
-     width: 100%;
-     height: 10%;
-     margin-bottom: 5px;
  }
  
  .logo {
-     position: absolute;
      background-color: #141414;
      width: 100vw;
      height: 10vh;
-     left: 0;
-     top: 0;
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     margin-bottom: 10px;
+ }
+ 
+ .theme {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+ 
+ .theme-button {
+     height: 50%;
+     background-color: transparent;
+     border: none;
+     cursor: pointer;
+     color: white;
+ }
+ 
+ .icon::before {
+     font-size: xx-large;
  }
  
  .logo img {
@@ -38,7 +45,7 @@
  }
  
  .logo a {
-     width: 750vw;
+     width: 40vw;
      color: #8C8C8C;
      display: flex;
      height: 10vh;
@@ -49,7 +56,7 @@
  
  main {
      width: 100%;
-     height: 80%;
+     height: 100%;
  }
  
  .row {
@@ -80,7 +87,7 @@
  
  .info {
      position: relative;
-     bottom: 10%;
+     bottom: -25%;
      opacity: 100%;
      margin: 0;
      background-color: #19191991;
@@ -115,12 +122,12 @@
  
  footer {
      width: 100%;
-     height: 10%;
+     height: 7.5%;
      position: absolute;
      bottom: 0;
  }
  
  footer h3 {
-     font-size: 1.5pc;
+     font-size: 1.2pc;
      text-align: center;
  }

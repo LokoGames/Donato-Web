@@ -24,6 +24,7 @@ function checkId(int $id = 0)
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo json_decode(file_get_contents("../obras/$id/info.json"))->{"nome"}; ?></title>
     <link rel="stylesheet" href="../css/mais.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 </head>
 
 <body>
@@ -33,6 +34,11 @@ function checkId(int $id = 0)
                 <img src="../images/dnt.png" alt="Logo" draggable="False">
                 <h1>Donato Construtora</h1>
             </a>
+            <div class="theme">
+                <button class="theme-button" onclick="toggleDark();">
+                    <i class="icon bi bi-brightness-high-fill"></i>
+                </button>
+            </div>
         </div>
     </header>
     <main>
