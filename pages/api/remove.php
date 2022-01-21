@@ -1,24 +1,20 @@
 <?php
+include "db.php";
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
     $rootPath = "../../obras/";
 
-    if(checkId($id)){
+    if (checkId($id)) {
+        removeObra($id);
         deleteDirectory($rootPath . $id);
         exit(header("Location: ../../admin/"));
-    }else{
+    } else {
         exit(header("Location: ../../admin/"));
     }
 }
-function checkId(int $id = 0)
-{
-    $rootPath = "../../obras/";
-    $fi = new FilesystemIterator($rootPath, FilesystemIterator::SKIP_DOTS);
-    $count = iterator_count($fi);
-    return (glob($rootPath . $id) != false);
-}
 
-function deleteDirectory($dir) {
+function deleteDirectory($dir)
+{
     if (!file_exists($dir)) {
         return true;
     }
@@ -35,7 +31,6 @@ function deleteDirectory($dir) {
         if (!deleteDirectory($dir . DIRECTORY_SEPARATOR . $item)) {
             return false;
         }
-
     }
 
     return rmdir($dir);

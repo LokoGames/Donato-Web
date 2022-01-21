@@ -1,6 +1,6 @@
 <?php
 include "db.php";
-header("Location: ../../index.php");
+header("Location: " . $_SERVER['DOCUMENT_ROOT'] . "/index.php");
 $files = array_filter($_FILES['file']['name']);
 $total_count = count($_FILES['file']['name']);
 $rootPath = $_SERVER['DOCUMENT_ROOT'] . "\/obras/";
@@ -9,7 +9,7 @@ $fi = new FilesystemIterator($rootPath, FilesystemIterator::SKIP_DOTS);
 $count = iterator_count($fi) - 1;
 
 $obraPath = $rootPath . ($count + 1) . "/";
-$imagePath = $obraPath .  "images/";
+$imagePath = $obraPath .  "/";
 
 mkdir($obraPath);
 mkdir($imagePath);
@@ -18,10 +18,10 @@ $jsonToEncode = array(
     'nome' => $_POST["nome"], 
     'end' => $_POST["end"], 
     'desc' => $_POST["desc"], 
-    'preco' => "R$" . $_POST["preco"]
+    'preco' => $_POST["preco"]
 );
 
-addObra($jsonToEncode["nome"],$jsonToEncode["enc"],$jsonToEncode["desc"],$jsonToEncode["preco"] );
+addObra($jsonToEncode["nome"],$jsonToEncode["end"],$jsonToEncode["desc"],$jsonToEncode["preco"] );
 
 // echo json_encode(($_FILES["file"]));
 for ($i = 1; $i < $total_count; $i++) {

@@ -1,4 +1,6 @@
 <?php
+include $_SERVER["DOCUMENT_ROOT"] . "/pages/api/db.php";
+
 if (isset($_GET["id"])) {
     if ($_GET["id"] != "" && checkId($_GET["id"]) == true) {
         $id = $_GET["id"];

@@ -1,34 +1,53 @@
 <?php
-parse_ini_file("./php.ini");
-$handle = new SQLite3("../../donato");
+
+$GLOBALS["handle"] = new PDO("sqlite:" . $_SERVER["DOCUMENT_ROOT"] ."/donato");
+
 function getAll()
 {
-    global $handle;
-    $sql = "SELECT * FROM obras;";
+    $handle = $GLOBALS["handle"];
+    $sql = "SELECT * FROM obras";
     $res = $handle->query($sql);
-    return $res;
+    $row = $res->fetchAll(\PDO::FETCH_ASSOC);
+    return $row;
+}
+
+function checkId(int $id = 0)
+{
+    $res = getId($id);
+    return ($res != false);
 }
 
 function getId(int $id)
 {
-    global $handle;
+    $handle = $GLOBALS["handle"];
     $sql = "SELECT * FROM obras WHERE id=$id;";
     $res = $handle->query($sql);
-    return $res;
+    if($res != false){
+        return json_encode($res);
+    }else{
+        return false;
+    }
 }
 
 function addObra(string $nome, string $end, string $desc, int $preco)
 {
-    global $handle;
-    $sql = "INSERT INTO obras (nome,end,desc,preco) VALUES ($nome, $end, $desc, $preco);";
-    $res = $handle->query($sql);
-    return $res;
+    $handle = $GLOBALS["handle"];
+    $sql = "INSERT INTO obras (nome,end,desc,preco) VALUES ('$nome','$end','$desc','$preco');";
+    $stmnt = $handle->prepare($sql);
+    $stmnt->execute();
 }
+
 function removeObra(int $id)
 {
-    global $handle;
-    $sql = "DROP FORM obras WHERE id=$id";
-    $res = $handle->query($sql);
-    return $res;
+    $handle = $GLOBALS["handle"];
+    $sql = "DELETE FROM obras WHERE id=$id";
+    $stmnt = $handle->prepare($sql);
+    $stmnt->execute();
+}
+function getImages(int $id){
+    $obraPath = $_SERVER["DOCUMENT_ROOT"] . "\\obras\\$id\\";
+    // $fi = new FilesystemIterator($obraPath, FilesystemIterator::SKIP_DOTS);
+    $files = glob($obraPath . "*");
+    return ($files != false) ? $files : array();
 }
 ?>

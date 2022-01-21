@@ -1,5 +1,5 @@
 <?php
-include "../pages/api/db.php";
+include $_SERVER["DOCUMENT_ROOT"] . "/pages/api/db.php";
 if (isset($_COOKIE["user"])) {
     $user = json_decode(base64_decode($_COOKIE["user"]), true);
     if (empty($user)) {
@@ -68,37 +68,25 @@ $GLOBALS['username'] = $GLOBALS['user']["username"];
                     <td>Options</td>
                 </tr>
                 <?php
-                
-                
-                function checkId(int $id = 0)
-                {
-                    $rootPath = "../obras/";
-                    $fi = new FilesystemIterator($rootPath, FilesystemIterator::SKIP_DOTS);
-                    $count = iterator_count($fi);
-                    return (glob($rootPath . $id) == false);
-                }
-                $obraPath = "../obras/";
-                $fi = new FilesystemIterator($obraPath, FilesystemIterator::SKIP_DOTS);
-                $count = iterator_count($fi);
-                for ($i = 0; $i < ($count); $i++) {
-
-                    if (!checkId($i)) {
-
-                        $files = glob($obraPath . "$i/images/" . "*");
-                        $json = json_decode(file_get_contents($obraPath . "$i/info.json"));
-                        if ($files != false) {
-                            $nome = $json->{"nome"};
-                            $end = $json->{"end"};
-                            $img = $files[0];
-                            $desc = $json->{"desc"};
-                            $preco = $json->{"preco"};
-
-                            $imgs = "";
-                            foreach ($files as $img) {
-                                $imgs .= "<img src='$img'>";
-                            }
-
-                            echo "
+                $rows = array(getAll());
+                var_dump($rows);
+                if ($rows && count($rows) > 1) {
+                    $sem = $rows[0];
+                    for ($i = 0; $i < count($sem); $i++) {
+                        $row = $sem[$i];
+                        $id = intval($row["id"]);
+                        $nome = $row["nome"];
+                        $end = $row["end"];
+                        $desc = $row["desc"];
+                        $preco = $row["preco"];
+                        $results = getImages($i);
+                        var_dump($results);
+                        $imgs = "";
+                        for ($j = 0; $j < count($results); $j++) {
+                            $file = $images[$j];
+                            $imgs .= "<img src='$file' draggable='false'/>";
+                        }
+                        echo "
                         <tr>
                     <td>$nome</td>
                     <td>$end</td>
@@ -108,14 +96,13 @@ $GLOBALS['username'] = $GLOBALS['user']["username"];
                     </td>
                     <td>$preco</td>
                     <td>
-                        <a href='../pages/api/edit.php?id=$i'>Edit</a>
-                        <a href='../pages/api/remove.php?id=$i'>Remove</a>
+                        <a href='../pages/api/edit.php?id=$id'>Edit</a>
+                        <a href='../pages/api/remove.php?id=$id'>Remove</a>
                     </td>
                 </tr>";
-                        } else {
-                            die("Nenhuma Obra encontrada");
-                        }
                     }
+                } else {
+                    echo "<tr><td><h1> Nenhuma obra encontrada!</h1></td></tr>";
                 }
                 ?>
             </table>
