@@ -1,4 +1,5 @@
 <?php
+
 $obraPath = "obras/";
 $fi = new FilesystemIterator($obraPath, FilesystemIterator::SKIP_DOTS);
 $count = iterator_count($fi);
@@ -9,7 +10,6 @@ for ($i = 0; $i < ($count); $i++) {
         $nome = $json->{"nome"};
         $end = $json->{"end"};
         $img = $files[0];
-
         echo "
         <div class='card' onmouseover='toggleInfo(this);'>
             <img src='$img'>

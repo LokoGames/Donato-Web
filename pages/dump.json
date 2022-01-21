@@ -1,0 +1,27 @@
+{
+    "name": [
+        "image1.jpg",
+        "image2.jpg",
+        "image6.jpg"
+    ],
+    "type": [
+        "",
+        "image\/jpeg",
+        "image\/jpeg"
+    ],
+    "tmp_name": [
+        "",
+        "C:\\Users\\jvdon\\AppData\\Local\\Temp\\php573E.tmp",
+        "C:\\Users\\jvdon\\AppData\\Local\\Temp\\php573F.tmp"
+    ],
+    "error": [
+        1,
+        0,
+        0
+    ],
+    "size": [
+        0,
+        1487773,
+        1450598
+    ]
+}

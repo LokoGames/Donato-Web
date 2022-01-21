@@ -13,7 +13,7 @@ function checkId(int $id = 0)
     $rootPath = "../obras/";
     $fi = new FilesystemIterator($rootPath, FilesystemIterator::SKIP_DOTS);
     $count = iterator_count($fi);
-    return ($id < $count);
+    return (glob($rootPath . $id) != false);
 }
 ?>
 <html lang="en">
