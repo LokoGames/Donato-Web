@@ -1,10 +1,13 @@
 <?php
 if (isset($_POST["username"]) && isset($_POST["password"])) {
+    $sqlitePath = $_SERVER["DOCUMENT_ROOT"] . "/donato";
+    $handler = new PDO("sqlite:$sqlitePath");
+    $res = ($handler->query("SELECT * FROM users;")->fetchAll(PDO::FETCH_ASSOC));
     $username = $_POST["username"];
     $password = $_POST["password"];
-    $users = json_decode(file_get_contents("../../users.json"), true);
-    foreach ($users as $user) { //foreach element in $arr
-        if ($user["username"] == $username && $user["password"] == $password) {
+    foreach ($res as $user) { //foreach element in $arr
+        var_dump($user);
+        if ($user["nome"] == $username && $user["password"] == $password && $user["role"] == 0) {
             $jsonToEncode = array(
                 'username' => $username,
                 'role' => $user["role"]

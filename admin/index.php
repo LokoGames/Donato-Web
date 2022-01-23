@@ -69,8 +69,8 @@ $GLOBALS['username'] = $GLOBALS['user']["username"];
                 </tr>
                 <?php
                 $rows = array(getAll());
-                var_dump($rows);
-                if ($rows && count($rows) > 1) {
+                // var_dump($rows);
+                if ($rows && count($rows) > 0) {
                     $sem = $rows[0];
                     for ($i = 0; $i < count($sem); $i++) {
                         $row = $sem[$i];
@@ -80,10 +80,10 @@ $GLOBALS['username'] = $GLOBALS['user']["username"];
                         $desc = $row["desc"];
                         $preco = $row["preco"];
                         $results = getImages($i);
-                        var_dump($results);
+                        // var_dump($results);
                         $imgs = "";
                         for ($j = 0; $j < count($results); $j++) {
-                            $file = $images[$j];
+                            $file = $results[$j];
                             $imgs .= "<img src='$file' draggable='false'/>";
                         }
                         echo "

@@ -137,7 +137,8 @@ main {
 
 .obras tr td img {
     width: 45%;
-    height: 80%;
+    height: 48%;
+    margin-left: 5px;
 }
 
 .obras tr td a {

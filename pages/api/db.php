@@ -45,7 +45,7 @@ function removeObra(int $id)
     $stmnt->execute();
 }
 function getImages(int $id){
-    $obraPath = $_SERVER["DOCUMENT_ROOT"] . "\\obras\\$id\\";
+    $obraPath = "..\\obras\\$id\\";
     // $fi = new FilesystemIterator($obraPath, FilesystemIterator::SKIP_DOTS);
     $files = glob($obraPath . "*");
     return ($files != false) ? $files : array();
