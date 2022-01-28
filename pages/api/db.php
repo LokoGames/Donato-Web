@@ -1,6 +1,6 @@
 <?php
 
-$GLOBALS["handle"] = new PDO("sqlite:" . $_SERVER["DOCUMENT_ROOT"] ."/donato");
+$GLOBALS["handle"] = new PDO("sqlite:" . $_SERVER["DOCUMENT_ROOT"] . "/donato");
 
 function getAll()
 {
@@ -22,11 +22,8 @@ function getId(int $id)
     $handle = $GLOBALS["handle"];
     $sql = "SELECT * FROM obras WHERE id=$id;";
     $res = $handle->query($sql);
-    if($res != false){
-        return json_encode($res);
-    }else{
-        return false;
-    }
+    $row = $res->fetch(\PDO::FETCH_ASSOC);
+    return $row;
 }
 
 function addObra(string $nome, string $end, string $desc, int $preco)
@@ -44,10 +41,20 @@ function removeObra(int $id)
     $stmnt = $handle->prepare($sql);
     $stmnt->execute();
 }
-function getImages(int $id){
-    $obraPath = "..\\obras\\$id\\";
-    // $fi = new FilesystemIterator($obraPath, FilesystemIterator::SKIP_DOTS);
-    $files = glob($obraPath . "*");
-    return ($files != false) ? $files : array();
+function getImages(int $id)
+{
+    $obraPath = $_SERVER["DOCUMENT_ROOT"] . "\\obras\\$id\\";
+
+    $res = array();
+    $files = scandir($obraPath);
+
+    foreach ($files as $file) {
+        if ($file != "." && $file != "..") {
+            $file = $obraPath . $file;
+            $b64Img = base64_encode(file_get_contents($file));
+            array_push($res, $b64Img);
+        }
+    }
+    return $res;
 }
 ?>

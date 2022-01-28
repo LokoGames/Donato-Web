@@ -1,25 +1,32 @@
 <?php
+include $_SERVER["DOCUMENT_ROOT"] . "/pages/api/db.php";
 
-$obraPath = "obras/";
-$fi = new FilesystemIterator($obraPath, FilesystemIterator::SKIP_DOTS);
-$count = iterator_count($fi);
-for ($i = 0; $i < ($count); $i++) {
-    $files = glob($obraPath . "$i/images/" . "*");
-    $json = json_decode(file_get_contents($obraPath . "$i/info.json"));
-    if ($files != false) {
-        $nome = $json->{"nome"};
-        $end = $json->{"end"};
-        $img = $files[0];
+$rows = array(getAll());
+if ($rows && count($rows) > 0) {
+    $sem = $rows[0];
+    for ($i = 0; $i < count($sem); $i++) {
+        $row = $sem[$i];
+        $id = intval($row["id"]);
+        $nome = $row["nome"];
+        $end = $row["end"];
+        $desc = $row["desc"];
+        $preco = $row["preco"];
+        $results = getImages($i);
+        $imgs = "";
+        if ($results != false) {
+            $imgs .= "<img src='data:image/png;base64, $results[0]' draggable='false'/>";
+        }
         echo "
-        <div class='card' onmouseover='toggleInfo(this);'>
-            <img src='$img'>
-                <a href='/pages/mais.php?id=$i' class='info hide'>
-                    <h2>$nome</h2>
-                    <h3>$end</h3>
-                </a> 
-        </div>";
-    } else {
-        die("Nenhuma Obra encontrada");
+        <a class='card' href='/pages/mais.php?id=" . ($i + 1) . "' onmouseover='toggleInfo(this)'>
+            $imgs
+            <div class='info hide' onmouseout='toggleInfo(this)'>
+            <h1>$nome</h1>
+            <h1>$preco</h1>
+            <h2>$end</h2>
+            </div>
+        </a>";
     }
+} else {
+    echo "<tr><td><h1> Nenhuma obra encontrada!</h1></td></tr>";
 }
 ?>

@@ -23,6 +23,20 @@
      margin-bottom: 10px;
  }
  
+ .logo img {
+     height: 10vh;
+ }
+ 
+ .logo a {
+     width: 40vw;
+     color: #8C8C8C;
+     display: flex;
+     height: 10vh;
+     line-height: 3;
+     font-family: 'Lato', sans-serif;
+     text-decoration: none;
+ }
+ 
  .theme {
      display: flex;
      justify-content: center;
@@ -39,20 +53,6 @@
  
  .icon::before {
      font-size: xx-large;
- }
- 
- .logo img {
-     height: 10vh;
- }
- 
- .logo a {
-     width: 40vw;
-     color: #8C8C8C;
-     display: flex;
-     height: 10vh;
-     line-height: 2;
-     font-family: 'Lato', sans-serif;
-     text-decoration: none;
  }
  
  main {
@@ -75,6 +75,8 @@
      justify-items: center;
      align-items: center;
      cursor: pointer;
+     color: white;
+     text-decoration: none;
  }
  
  .card>* {

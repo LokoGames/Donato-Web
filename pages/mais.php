@@ -10,13 +10,28 @@ if (isset($_GET["id"])) {
 } else {
     die("parameter id not specified!");
 }
-function checkId(int $id = 0)
-{
-    $rootPath = "../obras/";
-    $fi = new FilesystemIterator($rootPath, FilesystemIterator::SKIP_DOTS);
-    $count = iterator_count($fi);
-    return (glob($rootPath . $id) != false);
+
+$rows = array(getId($id));
+// var_dump($rows);
+if ($rows && count($rows) > 0) {
+    $sem = $rows;
+    for ($i = 0; $i < count($sem); $i++) {
+        $row = $sem[$i];
+        $id = intval($row["id"]);
+        $GLOBALS["nome"] = $row["nome"];
+        $GLOBALS["end"] = $row["end"];
+        $GLOBALS["desc"] = $row["desc"];
+        $GLOBALS["preco"] = $row["preco"];
+        $GLOBALS["results"] = getImages($i);
+        // var_dump($results);
+        $imgs = "";
+        for ($j = 0; $j < count($results); $j++) {
+            $file = $results[$j];
+            $imgs .= "<img src='data:image/png;base64, $file' draggable='false'/>";
+        }
+    }
 }
+
 ?>
 <html lang="en">
 
@@ -24,7 +39,7 @@ function checkId(int $id = 0)
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo json_decode(file_get_contents("../obras/$id/info.json"))->{"nome"}; ?></title>
+    <title><?php echo $GLOBALS["nome"]  ?></title>
     <link rel="stylesheet" href="../css/mais.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 </head>
@@ -48,14 +63,8 @@ function checkId(int $id = 0)
             <img id="displayImg" draggable="false">
             <div class="icons">
                 <?php
-                $rootPath = "../obras/$id/";
-                $imagePath = $rootPath . "images/";
-                $json = json_decode(file_get_contents($rootPath . "info.json"));
-                $fi = new FilesystemIterator($imagePath, FilesystemIterator::SKIP_DOTS);
-                $count = iterator_count($fi);
-                for ($i = 0; $i < $count; $i++) {
-                    $files = glob($imagePath . "*");
-                    echo "<img src='$files[$i]' draggable='false' onclick='setImage(this, $i);' class='images'>";
+                foreach ($results as $file) {
+                    echo "<img src='data:image/png;base64, $file' draggable='false' onclick='setImage(this, $i);' class='images'>";
                 }
                 ?>
                 <button onclick="changeImg()">></button>
@@ -63,14 +72,12 @@ function checkId(int $id = 0)
         </div>
         <div class="info">
             <?php
-            $rootPath = "../obras/$id/";
-            $json = json_decode(file_get_contents($rootPath . "info.json"));
             echo "<div class='top'>
-                <h1 id='nome'>" . $json->{"nome"} . "</h1>
-                <p id='preco'> " . $json->{"preco"} . "</p>
+                <h1 id='nome'>" . $GLOBALS["nome"] . "</h1>
+                <p id='preco'> " . $GLOBALS["preco"] . "</p>
             </div>
-            <h2 id='end'>" . $json->{"end"} . "</h2>
-            <h3 id='desc'>" . $json->{"desc"} . "</h3>";
+            <h2 id='end'>" . $GLOBALS["end"] . "</h2>
+            <h3 id='desc'>" . $GLOBALS["desc"] . "</h3>";
             ?>
         </div>
     </main>

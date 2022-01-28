@@ -82,9 +82,11 @@ $GLOBALS['username'] = $GLOBALS['user']["username"];
                         $results = getImages($i);
                         // var_dump($results);
                         $imgs = "";
-                        for ($j = 0; $j < count($results); $j++) {
-                            $file = $results[$j];
-                            $imgs .= "<img src='$file' draggable='false'/>";
+                        if ($results != false) {
+                            for ($j = 0; $j < count($results); $j++) {
+                                $file = $results[$j];
+                                $imgs .= "<img src='data:image/png;base64, $file' draggable='false'/>";
+                            }
                         }
                         echo "
                         <tr>

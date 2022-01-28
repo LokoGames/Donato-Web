@@ -1,5 +1,19 @@
 <html lang="en">
 
+<?php
+if (isset($_COOKIE["user"])) {
+    $user = json_decode(base64_decode($_COOKIE["user"]), true);
+    if (empty($user)) {
+        exit(header("Location: ../pages/login.html"));
+    }
+    if ($user["role"] != 0) {
+        exit(header("Location: ../pages/login.html"));
+    }
+} else {
+    exit(header("Location: ../pages/login.html"));
+}
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

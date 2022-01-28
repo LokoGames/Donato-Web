@@ -1,7 +1,3 @@
-<?php
-    parse_ini_file("./pages/api/php.ini");
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -31,8 +27,8 @@
     </header>
     <main>
         <div class="row">
-            <?php 
-                include "pages/render.php";
+            <?php
+            include "pages/render.php";
             ?>
         </div>
     </main>
@@ -41,4 +37,5 @@
     </footer>
     <script src="js/main.js"></script>
 </body>
+
 </html>
