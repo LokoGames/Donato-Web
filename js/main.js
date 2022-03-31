@@ -6,12 +6,10 @@ function htmlToElement(html) {
 }
 
 console.log("Running");
-let style;
 let darkMode = false;
 
 let sunClass = "icon bi bi-brightness-high-fill";
 let moonClass = "icon bi bi-moon-fill";
-
 
 function toggleInfo(sender) {
     let elm = sender;
@@ -21,35 +19,5 @@ function toggleInfo(sender) {
     elm.classList.remove("hide");
     setTimeout(() => {
         elm.classList.add("hide");
-    }, 2000);
-}
-
-let body = document.querySelector("body");
-let icon = document.querySelector(".icon");
-
-let colors = {
-    "dark": {
-        "text": "#CCC",
-        "background": "#222",
-        "class": sunClass
-    },
-    "light": {
-        "text": "#222",
-        "background": "#DDD",
-        "class": moonClass
-    }
-}
-
-toggleDark();
-
-function toggleDark() {
-    darkMode = !darkMode;
-    let color = {
-        "text": colors[(darkMode) ? "dark" : "light"]["text"],
-        "background": colors[(darkMode) ? "dark" : "light"]["background"],
-        "class": colors[(darkMode) ? "dark" : "light"]["class"]
-    }
-    body.style.color = color["text"];
-    body.style.backgroundColor = color["background"];
-    icon.className = color["class"];
+    }, 1000);
 }

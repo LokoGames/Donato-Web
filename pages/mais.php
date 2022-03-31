@@ -22,7 +22,7 @@ if ($rows && count($rows) > 0) {
         $GLOBALS["end"] = $row["end"];
         $GLOBALS["desc"] = $row["desc"];
         $GLOBALS["preco"] = $row["preco"];
-        $GLOBALS["results"] = getImages($i);
+        $GLOBALS["results"] = getImages($id-1);
         // var_dump($results);
         $imgs = "";
         for ($j = 0; $j < count($results); $j++) {
@@ -39,7 +39,7 @@ if ($rows && count($rows) > 0) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $GLOBALS["nome"]  ?></title>
+    <title><?php echo $GLOBALS["nome"]  ?> - Donato Construtora</title>
     <link rel="stylesheet" href="../css/mais.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 </head>
@@ -51,20 +51,15 @@ if ($rows && count($rows) > 0) {
                 <img src="../images/dnt.png" alt="Logo" draggable="False">
                 <h1>Donato Construtora</h1>
             </a>
-            <div class="theme">
-                <button class="theme-button" onclick="toggleDark();">
-                    <i class="icon bi bi-brightness-high-fill"></i>
-                </button>
-            </div>
         </div>
     </header>
     <main>
-        <div class="image">
+        <div class="images">
             <img id="displayImg" draggable="false">
             <div class="icons">
                 <?php
                 foreach ($results as $file) {
-                    echo "<img src='data:image/png;base64, $file' draggable='false' onclick='setImage(this, $i);' class='images'>";
+                    echo "<img src='data:image/png;base64, $file' draggable='false' onclick='setImage(this, $i);' class='image'>";
                 }
                 ?>
                 <button onclick="changeImg()">></button>
@@ -74,7 +69,7 @@ if ($rows && count($rows) > 0) {
             <?php
             echo "<div class='top'>
                 <h1 id='nome'>" . $GLOBALS["nome"] . "</h1>
-                <p id='preco'> " . $GLOBALS["preco"] . "</p>
+                <p id='preco'> R$ " . $GLOBALS["preco"] . "</p>
             </div>
             <h2 id='end'>" . $GLOBALS["end"] . "</h2>
             <h3 id='desc'>" . $GLOBALS["desc"] . "</h3>";

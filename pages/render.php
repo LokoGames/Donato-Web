@@ -16,15 +16,16 @@ if ($rows && count($rows) > 0) {
         if ($results != false) {
             $imgs .= "<img src='data:image/png;base64, $results[0]' draggable='false'/>";
         }
+        $class = (count($sem) % 4 == 0) ? "shown" : "hidden";
         echo "
-        <a class='card' href='/pages/mais.php?id=" . ($i + 1) . "' onmouseover='toggleInfo(this)'>
-            $imgs
-            <div class='info hide' onmouseout='toggleInfo(this)'>
-            <h1>$nome</h1>
-            <h1>$preco</h1>
-            <h2>$end</h2>
-            </div>
-        </a>";
+            <a title='$nome' class='card $class' href='/pages/mais.php?id=" . ($i + 1) . "' onmouseover='toggleInfo(this)'>
+                $imgs
+                <div class='info hide' onmouseout='toggleInfo(this)'>
+                    <h1>$nome</h1>
+                    <h2>$end</h2>
+                    <h3>$preco</h3>
+                </div>
+            </a>";
     }
 } else {
     echo "<tr><td><h1> Nenhuma obra encontrada!</h1></td></tr>";

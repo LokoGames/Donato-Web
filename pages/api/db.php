@@ -41,6 +41,7 @@ function removeObra(int $id)
     $stmnt = $handle->prepare($sql);
     $stmnt->execute();
 }
+
 function getImages(int $id)
 {
     $obraPath = $_SERVER["DOCUMENT_ROOT"] . "\\obras\\$id\\";

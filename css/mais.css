@@ -11,12 +11,13 @@
  }
  
  body {
-     background-color: #222;
-     color: #DDD;
+     background-color: #2E3440;
+     color: #D8DEE9;
  }
  
  .logo {
-     background-color: #141414;
+     background-color: #2E3440;
+     filter: brightness(75%);
      width: 100vw;
      height: 10vh;
      left: 0;
@@ -29,34 +30,18 @@
  
  .logo img {
      height: 10vh;
+     filter: brightness(100%);
+     filter: saturate(1.5);
  }
  
  .logo a {
      width: 50vw;
-     color: #BBB;
+     color: #D8DEE9;
      display: flex;
      height: 10vh;
      line-height: 3;
      font-family: 'Lato', sans-serif;
      text-decoration: none;
- }
- 
- .theme {
-     display: flex;
-     justify-content: center;
-     align-items: center;
- }
- 
- .theme-button {
-     height: 50%;
-     background-color: transparent;
-     border: none;
-     cursor: pointer;
-     color: white;
- }
- 
- .icon::before {
-     font-size: xx-large;
  }
  
  main {
@@ -82,7 +67,7 @@
      font-weight: 900;
  }
  
- .image {
+ .images {
      margin-left: 10px;
      width: 45vw;
      height: 50vh;
@@ -90,13 +75,13 @@
      flex-direction: column;
  }
  
- .image .change {
+ .images .change {
      animation: changing;
      animation-duration: 2s;
      animation-fill-mode: backwards;
  }
  
- .image img {
+ .images img {
      border-radius: 10px;
      height: 50vh;
      width: 49vw;
@@ -143,4 +128,10 @@
      border-radius: 0px;
      margin-right: 10px;
      border: 1px solid lightgray;
+ }
+ 
+ .image:hover {
+     background-color: #2E3440;
+     filter: brightness(75%);
+     filter: blur(1px);
  }

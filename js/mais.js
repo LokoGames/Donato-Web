@@ -1,6 +1,6 @@
 console.log("Initializing...");
 
-var images = document.getElementsByClassName("images");
+var images = document.getElementsByClassName("image");
 var displayImg = document.getElementById("displayImg");
 
 let currId = 0;
@@ -30,33 +30,3 @@ function setImage(sender, id) {
 }
 
 setInterval(changeImg, 5 * 1000);
-
-let body = document.querySelector("body");
-let icon = document.querySelector(".icon");
-
-let colors = {
-    "dark": {
-        "background": "#222",
-        "class": sunClass,
-        "text": "#EEE"
-    },
-    "light": {
-        "background": "#DDD",
-        "class": moonClass,
-        "text": "#222"
-    }
-}
-
-toggleDark();
-
-function toggleDark() {
-    darkMode = !darkMode;
-    let color = {
-        "text": colors[(darkMode) ? "dark" : "light"]["text"],
-        "background": colors[(darkMode) ? "dark" : "light"]["background"],
-        "class": colors[(darkMode) ? "dark" : "light"]["class"]
-    }
-    body.style.color = color["text"];
-    body.style.backgroundColor = color["background"];
-    icon.className = color["class"];
-}
