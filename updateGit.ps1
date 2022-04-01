@@ -5,3 +5,5 @@ $dt = $dt -replace "`n",", " -replace "`r",", "
 echo "Comminting with date #> $dt" 
 git commit -m $dt
 git push -u origin master
+
+pause
