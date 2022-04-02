@@ -38,11 +38,6 @@ $GLOBALS['username'] = $GLOBALS['user']["username"];
                 <img src="../images/dnt.png" alt="Logo" draggable="False">
                 <h1>Painel De Controle</h1>
             </a>
-            <div class="theme">
-                <button class="theme-button" onclick="toggleDark();">
-                    <i class="icon bi bi-brightness-high-fill"></i>
-                </button>
-            </div>
         </div>
     </header>
     <main>
@@ -58,11 +53,13 @@ $GLOBALS['username'] = $GLOBALS['user']["username"];
         <div class="right-side">
             <table class="obras">
                 <tr>
+                    <td>ID</td>
                     <td>Nome</td>
                     <td>End</td>
                     <td>Images</td>
                     <td>Desc</td>
                     <td>Preço</td>
+                    <td>Vendida</td>
                     <td>Options</td>
                 </tr>
                 <?php
@@ -77,17 +74,21 @@ $GLOBALS['username'] = $GLOBALS['user']["username"];
                         $end = $row["end"];
                         $desc = $row["desc"];
                         $preco = $row["preco"];
-                        $results = getImages($i);
+                        $sold = ($row["sold"]) ? "Vendida" : "Disponivel";
+                        $results = getImages($id);
                         // var_dump($results);
                         $imgs = "";
                         if ($results != false) {
-                            for ($j = 0; $j < count($results); $j++) {
-                                $file = $results[$j];
-                                $imgs .= "<img src='data:image/png;base64, $file' draggable='false'/>";
+                            for ($j = 0; $j < 2; $j++) {
+                                if (array_key_exists($j, $results)) {
+                                    $file = $results[$j];
+                                    $imgs .= "<img src='data:image/png;base64, $file' draggable='false'/>";
+                                }
                             }
                         }
                         echo "
                         <tr>
+                    <td>$id</td>
                     <td>$nome</td>
                     <td>$end</td>
                     <td>$imgs</td>
@@ -95,6 +96,7 @@ $GLOBALS['username'] = $GLOBALS['user']["username"];
                         <textarea readonly>$desc</textarea>
                     </td>
                     <td>$preco</td>
+                    <td> $sold</td>
                     <td>
                         <a href='../pages/api/edit.php?id=$id'>Edit</a>
                         <a href='../pages/api/remove.php?id=$id'>Remove</a>

@@ -1,33 +1,33 @@
 <?php
 include $_SERVER["DOCUMENT_ROOT"] . "/pages/api/db.php";
 
-$rows = array(getAll());
+$rows = getAll();
 if ($rows && count($rows) > 0) {
-    $sem = $rows[0];
-    for ($i = 0; $i < count($sem); $i++) {
-        $row = $sem[$i];
+    for ($i = 0; $i < count($rows); $i++) {
+        $row = $rows[$i];
         $id = intval($row["id"]);
-        $nome = $row["nome"];
-        $end = $row["end"];
-        $desc = $row["desc"];
-        $preco = $row["preco"];
-        $results = getImages($i);
-        $imgs = "";
-        if ($results != false) {
-            $imgs .= "<img src='data:image/png;base64, $results[0]' draggable='false'/>";
+        if(getId($id)){
+            $nome = $row["nome"];
+            $end = $row["end"];
+            $desc = $row["desc"];
+            $preco = $row["preco"];
+            $results = getImages($id);
+            $imgs = "";
+            if ($results != false) {
+                $imgs .= "<img src='data:image/png;base64, $results[0]' draggable='false'/>";
+            }
+            echo "
+                <a title='$nome' class='card' href='/pages/mais.php?id=" . ($id) . "' onmouseover='toggleInfo(this)'>
+                    $imgs
+                    <div class='info hide' onmouseout='toggleInfo(this)'>
+                        <h1>$nome</h1>
+                        <h2>$end</h2>
+                        <h3>$preco</h3>
+                    </div>
+                </a>";
         }
-        $class = (count($sem) % 4 == 0) ? "shown" : "hidden";
-        echo "
-            <a title='$nome' class='card $class' href='/pages/mais.php?id=" . ($i + 1) . "' onmouseover='toggleInfo(this)'>
-                $imgs
-                <div class='info hide' onmouseout='toggleInfo(this)'>
-                    <h1>$nome</h1>
-                    <h2>$end</h2>
-                    <h3>$preco</h3>
-                </div>
-            </a>";
     }
 } else {
-    echo "<tr><td><h1> Nenhuma obra encontrada!</h1></td></tr>";
+    echo "<h2 class='noObra'> Nenhuma obra encontrada!</h2>";
 }
 ?>

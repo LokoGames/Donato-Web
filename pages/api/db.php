@@ -26,10 +26,10 @@ function getId(int $id)
     return $row;
 }
 
-function addObra(string $nome, string $end, string $desc, int $preco)
+function addObra(string $nome, string $end, string $desc, int $preco, bool $sold)
 {
     $handle = $GLOBALS["handle"];
-    $sql = "INSERT INTO obras (nome,end,desc,preco) VALUES ('$nome','$end','$desc','$preco');";
+    $sql = "INSERT INTO obras (nome,end,desc,preco,sold) VALUES ('$nome','$end','$desc','$preco', '$sold');";
     $stmnt = $handle->prepare($sql);
     $stmnt->execute();
 }
@@ -40,12 +40,15 @@ function removeObra(int $id)
     $sql = "DELETE FROM obras WHERE id=$id";
     $stmnt = $handle->prepare($sql);
     $stmnt->execute();
+    $id--;
+    $obraPath = $_SERVER["DOCUMENT_ROOT"] . "\\obras\\$id\\";
+    deleteDirectory($obraPath);
 }
 
 function getImages(int $id)
 {
+    $id--;
     $obraPath = $_SERVER["DOCUMENT_ROOT"] . "\\obras\\$id\\";
-
     $res = array();
     $files = scandir($obraPath);
 
@@ -57,5 +60,51 @@ function getImages(int $id)
         }
     }
     return $res;
+}
+function deleteDirectory($dir)
+{
+    $it = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
+    $files = new RecursiveIteratorIterator(
+        $it,
+        RecursiveIteratorIterator::CHILD_FIRST
+    );
+    foreach ($files as $file) {
+        if ($file->isDir()) {
+            rmdir($file->getRealPath());
+        } else {
+            unlink($file->getRealPath());
+        }
+    }
+    rmdir($dir);
+}
+
+function checkImage($obraId, $imageId)
+{
+    $obraId--;
+    $obraPath = $_SERVER["DOCUMENT_ROOT"] . "\\obras\\$obraId\\";
+    $it = new FilesystemIterator($obraPath, FilesystemIterator::SKIP_DOTS);
+    $files = array();
+    foreach ($it as $file) {
+        if ($file->isFile()) {
+            array_push($files, $file->getFilename());
+        }
+    }
+
+    return file_exists($obraPath . $files[$imageId]);
+}
+
+function deleteImage($obraId, $imageId)
+{
+    $obraId--;
+    $obraPath = $_SERVER["DOCUMENT_ROOT"] . "\\obras\\$obraId\\";
+    $it = new FilesystemIterator($obraPath, FilesystemIterator::SKIP_DOTS);
+    $files = array();
+    foreach ($it as $file) {
+        if ($file->isFile()) {
+            array_push($files, $file->getFilename());
+        }
+    }
+
+    return unlink($obraPath . $files[$imageId]);
 }
 ?>

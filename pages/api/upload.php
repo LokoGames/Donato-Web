@@ -33,10 +33,11 @@ $jsonToEncode = array(
     'nome' => $_POST["nome"], 
     'end' => $_POST["end"], 
     'desc' => $_POST["desc"], 
-    'preco' => intval($_POST["preco"])
+    'preco' => intval($_POST["preco"]),
+    'sold' => boolval($_POST['sold'])
 );
 
-addObra($jsonToEncode["nome"],$jsonToEncode["end"],$jsonToEncode["desc"],$jsonToEncode["preco"] );
+addObra($jsonToEncode["nome"],$jsonToEncode["end"],$jsonToEncode["desc"],$jsonToEncode["preco"],$jsonToEncode["sold"] );
 
 file_put_contents("debug.json", json_encode(($_FILES["file"])), FILE_APPEND);
 

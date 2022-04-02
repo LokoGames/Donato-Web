@@ -31,9 +31,13 @@ if (isset($_COOKIE["user"])) {
     <main>
         <form method="POST" action="api/upload.php" class="uploadForm border border-secondary" enctype="multipart/form-data">
             <input class="border border-primary" name="nome" type="text" placeholder="Nome:">
-            <input class="border border-primary" name="preco" type="number" placeholder="Preco">
+            <input class="border border-primary" name="preco" type="number" placeholder="Preco:">
             <input class="border border-primary" name="end" type="text" placeholder="Endereço:">
-            <textarea class="border border-primary" name="desc" placeholder="Descrição"></textarea>
+            <div class="venda">
+                <label for="sold">Vendida: </label>
+                <input class="border border-primary" name="sold" type="checkbox" id="sold">
+            </div>
+            <textarea class="border border-primary" name="desc" placeholder="Descrição:"></textarea>
             <input name="file[]" type="file" multiple="multiple">
             <input type="submit" name="submit" value="Upload" class="btn btn-secondary">
         </form>

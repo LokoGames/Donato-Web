@@ -22,15 +22,16 @@
         </div>
     </header>
     <main>
+        <div class="sobre">
+            
+        </div>
+        <h1>Conheça nossos trabalhos!</h1>
         <div class="obras">
             <?php
             include "pages/render.php";
             ?>
         </div>
     </main>
-    <footer>
-    <h3>Copyright <b>&COPY;</b> Donato Construtora 2021</h3>
-    </footer>
     <script src="js/main.js"></script>
 </body>
 

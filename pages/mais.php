@@ -14,21 +14,18 @@ if (isset($_GET["id"])) {
 $rows = array(getId($id));
 // var_dump($rows);
 if ($rows && count($rows) > 0) {
-    $sem = $rows;
-    for ($i = 0; $i < count($sem); $i++) {
-        $row = $sem[$i];
-        $id = intval($row["id"]);
-        $GLOBALS["nome"] = $row["nome"];
-        $GLOBALS["end"] = $row["end"];
-        $GLOBALS["desc"] = $row["desc"];
-        $GLOBALS["preco"] = $row["preco"];
-        $GLOBALS["results"] = getImages($id-1);
-        // var_dump($results);
-        $imgs = "";
-        for ($j = 0; $j < count($results); $j++) {
-            $file = $results[$j];
-            $imgs .= "<img src='data:image/png;base64, $file' draggable='false'/>";
-        }
+    $row = $rows[0];
+    $id = intval($row["id"]);
+    $GLOBALS["nome"] = $row["nome"];
+    $GLOBALS["end"] = $row["end"];
+    $GLOBALS["desc"] = $row["desc"];
+    $GLOBALS["preco"] = $row["preco"];
+    $GLOBALS["results"] = getImages($id);
+    // var_dump($results);
+    $imgs = "";
+    for ($j = 0; $j < count($results); $j++) {
+        $file = $results[$j];
+        $imgs .= "<img src='data:image/png;base64, $file' draggable='false'/>";
     }
 }
 
@@ -41,6 +38,7 @@ if ($rows && count($rows) > 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $GLOBALS["nome"]  ?> - Donato Construtora</title>
     <link rel="stylesheet" href="../css/mais.css">
+    <link rel="stylesheet" href="../css/dynamic/mais.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 </head>
 
@@ -58,8 +56,10 @@ if ($rows && count($rows) > 0) {
             <img id="displayImg" draggable="false">
             <div class="icons">
                 <?php
+                $id=0;
                 foreach ($results as $file) {
-                    echo "<img src='data:image/png;base64, $file' draggable='false' onclick='setImage(this, $i);' class='image'>";
+                    echo "<img src='data:image/png;base64, $file' draggable='false' onclick='setImage(this, $id);' class='image'>";
+                    $id++;
                 }
                 ?>
                 <button onclick="changeImg()">></button>
