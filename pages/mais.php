@@ -23,10 +23,6 @@ if ($rows && count($rows) > 0) {
     $GLOBALS["results"] = getImages($id);
     // var_dump($results);
     $imgs = "";
-    for ($j = 0; $j < count($results); $j++) {
-        $file = $results[$j];
-        $imgs .= "<img src='data:image/png;base64, $file' draggable='false'/>";
-    }
 }
 
 ?>
@@ -56,18 +52,19 @@ if ($rows && count($rows) > 0) {
             <img id="displayImg" draggable="false">
             <div class="icons">
                 <?php
-                $id=0;
-                foreach ($results as $file) {
-                    echo "<img src='data:image/png;base64, $file' draggable='false' onclick='setImage(this, $id);' class='image'>";
-                    $id++;
+                for ($j = 0; $j < 5; $j++) {
+                    if (array_key_exists($j, $results)) {
+                        $file = $results[$j];
+                        echo "<img src='data:image/png;base64, $file' draggable='false'  onclick='setImage(this, $j);' class='image'/>";
+                    }
                 }
                 ?>
-                <button onclick="changeImg()">></button>
             </div>
         </div>
         <div class="info">
             <?php
-            echo "<div class='top'>
+            echo "
+            <div class='top'>
                 <h1 id='nome'>" . $GLOBALS["nome"] . "</h1>
                 <p id='preco'> R$ " . $GLOBALS["preco"] . "</p>
             </div>

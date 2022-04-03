@@ -40,3 +40,12 @@ main {
     display: flex;
     flex-direction: column;
 }
+
+.uploadForm h1,
+p {
+    text-align: center;
+}
+
+.uploadForm p {
+    font-size: larger;
+}

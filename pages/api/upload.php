@@ -34,7 +34,7 @@ $jsonToEncode = array(
     'end' => $_POST["end"], 
     'desc' => $_POST["desc"], 
     'preco' => intval($_POST["preco"]),
-    'sold' => boolval($_POST['sold'])
+    'sold' => boolval($_POST['sold'] | false)
 );
 
 addObra($jsonToEncode["nome"],$jsonToEncode["end"],$jsonToEncode["desc"],$jsonToEncode["preco"],$jsonToEncode["sold"] );
@@ -42,18 +42,20 @@ addObra($jsonToEncode["nome"],$jsonToEncode["end"],$jsonToEncode["desc"],$jsonTo
 file_put_contents("debug.json", json_encode(($_FILES["file"])), FILE_APPEND);
 
 // echo json_encode(($_FILES["file"]));
-for ($i = 0; $i < $total_count; $i++) {
-    //The temp file path is obtained
-    $tmpFilePath = $_FILES['file']['tmp_name'][$i];
-    // echo "$i -> $tmpFilePath";
-    //A file path needs to be present
-    if ($tmpFilePath != "" && $_FILES["file"]["error"][$i] == 0) {
-        //Setup our new file path
-        $newFilePath = $obraPath . $_FILES['file']['name'][$i];
-        //File is uploaded to temp dir
-        if (move_uploaded_file($tmpFilePath, $newFilePath)) {
-            echo "File $i:" . $_FILES['file']['name'][$i] . " Uploaded! \r\n";
-            $remaining--;
+for ($i = 0; $i < 5; $i++) {
+    if(array_key_exists($i, $_FILES['file']['tmp_name'])){
+        //The temp file path is obtained
+        $tmpFilePath = $_FILES['file']['tmp_name'][$i];
+        // echo "$i -> $tmpFilePath";
+        //A file path needs to be present
+        if ($tmpFilePath != "" && $_FILES["file"]["error"][$i] == 0) {
+            //Setup our new file path
+            $newFilePath = $obraPath . $_FILES['file']['name'][$i];
+            //File is uploaded to temp dir
+            if (move_uploaded_file($tmpFilePath, $newFilePath)) {
+                echo "File $i:" . $_FILES['file']['name'][$i] . " Uploaded! \r\n";
+                $remaining--;
+            }
         }
     }
 }

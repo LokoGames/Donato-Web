@@ -33,6 +33,13 @@ if (isset($_GET["id"]) && getId($_GET["id"])) {
             $file = $results[$j];
             $imgs .= "<img src='data:image/png;base64, $file' draggable='false'/>";
         }
+        echo "<div>
+            <h1>$id</h1>
+            <h2>$nome</h2>
+            <h2>$end</h2>
+            <h2>$preco</h2>
+            <h3>$desc</h3>
+        </div>";
     }
     ?>
 </body>

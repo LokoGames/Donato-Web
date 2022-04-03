@@ -5,10 +5,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Encode+Sans+SC&family=Zen+Loop:ital@1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
-@media(max-width: 420px){
+@media(max-width: 420px) {
     body {
         width: 100vw;
         height: max-content;
+    }
+
+    .logo a {
+        font-size: medium;
+        line-height: 1;
     }
 
     .obras {
@@ -18,15 +23,18 @@
         margin: 0;
         gap: 0;
     }
+
     .card {
         width: 100%;
         margin-bottom: 20px;
     }
+
     footer {
         width: 100%;
         position: absolute;
         bottom: 0;
     }
+
     main h1 {
         font-size: 2em;
     }

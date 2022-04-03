@@ -30,6 +30,8 @@ if (isset($_COOKIE["user"])) {
 <body>
     <main>
         <form method="POST" action="api/upload.php" class="uploadForm border border-secondary" enctype="multipart/form-data">
+            <h1>Upload System</h1>
+            <p class="alert-danger">Máximo de 5 arquivos!</p>
             <input class="border border-primary" name="nome" type="text" placeholder="Nome:">
             <input class="border border-primary" name="preco" type="number" placeholder="Preco:">
             <input class="border border-primary" name="end" type="text" placeholder="Endereço:">
