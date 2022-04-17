@@ -78,33 +78,11 @@ function deleteDirectory($dir)
     rmdir($dir);
 }
 
-function checkImage($obraId, $imageId)
+function editObra(int $id, string $nome, string $end, string $desc, int $preco, bool $sold = false)
 {
-    $obraId--;
-    $obraPath = $_SERVER["DOCUMENT_ROOT"] . "\\obras\\$obraId\\";
-    $it = new FilesystemIterator($obraPath, FilesystemIterator::SKIP_DOTS);
-    $files = array();
-    foreach ($it as $file) {
-        if ($file->isFile()) {
-            array_push($files, $file->getFilename());
-        }
-    }
-
-    return file_exists($obraPath . $files[$imageId]);
-}
-
-function deleteImage($obraId, $imageId)
-{
-    $obraId--;
-    $obraPath = $_SERVER["DOCUMENT_ROOT"] . "\\obras\\$obraId\\";
-    $it = new FilesystemIterator($obraPath, FilesystemIterator::SKIP_DOTS);
-    $files = array();
-    foreach ($it as $file) {
-        if ($file->isFile()) {
-            array_push($files, $file->getFilename());
-        }
-    }
-
-    return unlink($obraPath . $files[$imageId]);
+    $handle = $GLOBALS["handle"];
+    $sql = "UPDATE obras SET nome = '$nome', end = '$end', desc = '$desc', preco = '$preco', sold = '$sold' WHERE id = $id;";
+    $statement = $handle->prepare($sql);
+    return $statement->execute();
 }
 ?>

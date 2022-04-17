@@ -12,12 +12,13 @@ if ($rows && count($rows) > 0) {
             $desc = $row["desc"];
             $preco = $row["preco"];
             $results = getImages($id);
+            $sold = $row["sold"];
             $imgs = "";
             if ($results != false) {
                 $imgs .= "<img src='data:image/png;base64, $results[0]' draggable='false'/>";
             }
             echo "
-                <a title='$nome' class='card' href='/pages/mais.php?id=" . ($id) . "' onmouseover='toggleInfo(this)'>
+                <a title='$nome' class='card " . (($sold) ? "sold": "") . "' href='/pages/mais.php?id=" . ($id) . "' onmouseover='toggleInfo(this)'>
                     $imgs
                     <div class='info hide' onmouseout='toggleInfo(this)'>
                         <h1>$nome</h1>

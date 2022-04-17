@@ -74,7 +74,7 @@ $GLOBALS['username'] = $GLOBALS['user']["username"];
                         $end = $row["end"];
                         $desc = $row["desc"];
                         $preco = $row["preco"];
-                        $sold = ($row["sold"]) ? "Vendida" : "Disponivel";
+                        $sold = ($row["sold"] == 1) ? "Vendida" : "Disponível";
                         $results = getImages($id);
                         // var_dump($results);
                         $imgs = "";
@@ -98,7 +98,7 @@ $GLOBALS['username'] = $GLOBALS['user']["username"];
                     <td>$preco</td>
                     <td> $sold</td>
                     <td>
-                        <a href='../pages/api/edit.php?id=$id'>Edit</a>
+                        <a href='../pages/edit.php?id=$id'>Edit</a>
                         <a href='../pages/api/remove.php?id=$id'>Remove</a>
                     </td>
                 </tr>";
